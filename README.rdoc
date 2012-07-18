@@ -21,3 +21,5 @@ PCOTM is a game where you play as the PhoneCaseOfTheMonth.com Monster, and your 
 == Copyright
 This project provided by Jeremy Woertink in association with PhoneCaseOfTheMonth.com
 Copyright (c) 2012 Jeremy Woertink & PhoneCaseOfTheMonth.com.
+
+Music thanks to Erik Skiff and Trash80 provided by http://freemusicarchive.org/genre/Chiptune

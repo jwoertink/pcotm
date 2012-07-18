@@ -6,6 +6,8 @@ class TitleScreen
     @background = Gosu::Image.new(window, "assets/title-screen.png", true)
     set_text!
     @selector = OptionSelector.new(window, 160, 280, 3)
+    @title_song = Gosu::Song.new(window, "assets/title-screen.mp3")
+    @title_song.play(true)
   end
   
   def draw
@@ -30,6 +32,8 @@ class TitleScreen
       case @selector.value
       when 1
         @window.game_in_progress = true
+        @title_song.stop
+        @window.game_song.play(true)
       when 2
         
       when 3

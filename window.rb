@@ -1,5 +1,5 @@
 class Window < Gosu::Window
-  attr_reader :map
+  attr_reader :map, :game_song
   attr_accessor :game_in_progress
   
   def initialize
@@ -12,6 +12,7 @@ class Window < Gosu::Window
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 20)
     @game_in_progress = false
     @title_screen = TitleScreen.new(self)
+    @game_song = Gosu::Song.new(self, "assets/game-song.mp3")
   end
   
   def update
