@@ -52,7 +52,7 @@ class Window < Gosu::Window
   end
   
   def game_keys(id)
-    @monster.try_to_jump if id == Gosu::KbUp
+    @monster.try_to_jump if id == Gosu::KbSpace || id == Gosu::KbUp
   end
   
 end
