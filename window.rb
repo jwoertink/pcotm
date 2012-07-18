@@ -9,7 +9,7 @@ class Window < Gosu::Window
     @map = Map.new(self, "assets/map.txt")
     @monster = Monster.new(self, 400, 100)
     @camera_x = @camera_y = 0
-    @score_font = Gosu::Font.new(self, Gosu.default_font_name, 20)
+    @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
     @game_in_progress = false
     @title_screen = TitleScreen.new(self)
     @game_song = Gosu::Song.new(self, "assets/game-song.mp3")

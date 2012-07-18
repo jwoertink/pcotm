@@ -9,6 +9,7 @@ class Monster
     @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "assets/monster.png", 50, 50, false)
     @cur_image = @standing
     @phones = 0
+    @beep = Gosu::Sample.new(window, "assets/beep.wav")
   end
   
   def draw
@@ -62,6 +63,7 @@ class Monster
     phones.reject! do |c|
       if (c.x - @x).abs < 50 and (c.y - @y).abs < 50
         @phones += 1
+        @beep.play
         true
       end
     end
