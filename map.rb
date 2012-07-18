@@ -5,7 +5,6 @@ class Map
     # Load 60x60 tiles, 5px overlap in all four directions.
     @tileset = Gosu::Image.load_tiles(window, "assets/land-tiles.png", 60, 60, true)
 
-    phone_img = Gosu::Image.new(window, "assets/phone.png", false)
     @phones = []
 
     lines = File.readlines(filename).map { |line| line.chomp }
@@ -19,6 +18,7 @@ class Map
         when '#'
           Tiles::EARTH
         when 'x'
+          phone_img = Gosu::Image.new(window, "assets/phone_#{rand(5) + 1}.png", false)
           @phones << Phone.new(phone_img, x * 50 + 25, y * 50 + 25)
           nil
         else
