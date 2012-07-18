@@ -12,7 +12,7 @@ class Window < Gosu::Window
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
     @game_in_progress = false
     @title_screen = TitleScreen.new(self)
-    @game_song = Gosu::Song.new(self, File.join(File.dirname(__FILE__), 'assets', 'game-song.mp3'))
+    @game_song = Gosu::Song.new(self, File.join(File.dirname(__FILE__), 'assets', 'game-song.ogg'))
   end
   
   def update
