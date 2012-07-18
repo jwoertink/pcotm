@@ -60,8 +60,8 @@ class Monster
   end
   
   def collect_phones(phones)
-    phones.reject! do |c|
-      if (c.x - @x).abs < 50 and (c.y - @y).abs < 50
+    phones.reject! do |phone|
+      if (phone.x - @x).abs < 50 and (phone.y - @y).abs < 50
         @phones += 1
         @beep.play
         true

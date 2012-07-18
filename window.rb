@@ -7,6 +7,7 @@ class Window < Gosu::Window
     self.caption = "Phone Case of the Monster"
     @sky = Gosu::Image.new(self, File.join(File.dirname(__FILE__), 'assets', 'background.png'), true)
     @map = Map.new(self, "assets/map.txt")
+    @total_phones = @map.phones.length
     @monster = Monster.new(self, 400, 100)
     @camera_x = @camera_y = 0
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
@@ -22,6 +23,9 @@ class Window < Gosu::Window
       move_x += 5 if button_down? Gosu::KbRight
       @monster.update(move_x)
       @monster.collect_phones(@map.phones)
+      if @monster.phones >= @total_phones
+        # Add callback for finding all the phones
+      end
       @camera_x = [[@monster.x - 320, 0].max, @map.width * 50 - 640].min
       @camera_y = [[@monster.y - 240, 0].max, @map.height * 50 - 480].min
     else
