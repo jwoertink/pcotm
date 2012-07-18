@@ -3,10 +3,10 @@ class TitleScreen
   
   def initialize(window)
     @window = window
-    @background = Gosu::Image.new(window, File.join(File.dirname(__FILE__), 'assets', 'title-screen.png', true)
+    @background = Gosu::Image.new(window, File.join(File.dirname(__FILE__), 'assets', 'title-screen.png'), true)
     set_text!
     @selector = OptionSelector.new(window, 160, 280, 3)
-    @title_song = Gosu::Song.new(window, File.join(File.dirname(__FILE__), 'assets', 'title-screen.mp3')
+    @title_song = Gosu::Song.new(window, File.join(File.dirname(__FILE__), 'assets', 'title-screen.mp3'))
     @title_song.play(true)
   end
   
