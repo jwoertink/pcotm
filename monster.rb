@@ -6,10 +6,10 @@ class Monster
     @dir = :left
     @vy = 0
     @map = window.map
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, "assets/monster.png", 50, 50, false)
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, File.join(File.dirname(__FILE__), 'assets', 'monster.png', 50, 50, false)
     @cur_image = @standing
     @phones = 0
-    @beep = Gosu::Sample.new(window, "assets/beep.wav")
+    @beep = Gosu::Sample.new(window, File.join(File.dirname(__FILE__), 'assets', 'beep.wav')
   end
   
   def draw

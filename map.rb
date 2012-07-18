@@ -3,7 +3,7 @@ class Map
   
   def initialize(window, filename)
     # Load 60x60 tiles, 5px overlap in all four directions.
-    @tileset = Gosu::Image.load_tiles(window, "assets/land-tiles.png", 60, 60, true)
+    @tileset = Gosu::Image.load_tiles(window, File.join(File.dirname(__FILE__), 'assets', 'land-tiles.png', 60, 60, true)
 
     @phones = []
 
@@ -18,7 +18,7 @@ class Map
         when '#'
           Tiles::EARTH
         when 'x'
-          phone_img = Gosu::Image.new(window, "assets/phone_#{rand(5) + 1}.png", false)
+          phone_img = Gosu::Image.new(window, File.join(File.dirname(__FILE__), 'assets', "phone_#{rand(5) + 1}.png", false)
           @phones << Phone.new(phone_img, x * 50 + 25, y * 50 + 25)
           nil
         else

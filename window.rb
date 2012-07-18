@@ -5,14 +5,14 @@ class Window < Gosu::Window
   def initialize
     super 640, 480, false
     self.caption = "Phone Case of the Monster"
-    @sky = Gosu::Image.new(self, "assets/background.png", true)
+    @sky = Gosu::Image.new(self, File.join(File.dirname(__FILE__), 'assets', 'background.png'), true)
     @map = Map.new(self, "assets/map.txt")
     @monster = Monster.new(self, 400, 100)
     @camera_x = @camera_y = 0
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
     @game_in_progress = false
     @title_screen = TitleScreen.new(self)
-    @game_song = Gosu::Song.new(self, "assets/game-song.mp3")
+    @game_song = Gosu::Song.new(self, File.join(File.dirname(__FILE__), 'assets', 'game-song.mp3')
   end
   
   def update
