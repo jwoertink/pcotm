@@ -1,0 +1,23 @@
+= PCOTM (Phone Case of the Monster)
+
+PCOTM is a game where you play as the PhoneCaseOfTheMonth.com Monster, and your goal is to collect all the phone cases.
+
+== Requirements
+
+* Ruby 1.8.7 or 1.9.2
+* Bundler Gem
+
+== Installation
+
+	git clone git@github.com:jwoertink/pcotm.git
+	cd pcotm
+	bundle install
+
+== Playing
+	
+	pcotm$ ruby play.rb
+	
+
+== Copyright
+This project provided by Jeremy Woertink in association with PhoneCaseOfTheMonth.com
+Copyright (c) 2012 Jeremy Woertink & PhoneCaseOfTheMonth.com.
