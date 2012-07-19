@@ -17,7 +17,7 @@ class OptionSelector
   
   # Move up to the next option unless the value is 0
   def move_up
-    unless @value.zero?
+    unless @value.eql? 1
       @y -= 40
       @value -= 1
     end

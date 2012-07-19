@@ -1,5 +1,6 @@
 class Monster
   attr_reader :x, :y, :phones
+  attr_accessor :level_phone_count
   
   def initialize(window, x, y)
     @x, @y = x, y
@@ -9,6 +10,7 @@ class Monster
     @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, File.join(File.dirname(__FILE__), 'assets', 'monster.png'), 50, 50, false)
     @cur_image = @standing
     @phones = 0
+    self.level_phone_count = 0
     @beep = Gosu::Sample.new(window, File.join(File.dirname(__FILE__), 'assets', 'beep.wav'))
   end
   
@@ -63,6 +65,7 @@ class Monster
     phones.reject! do |phone|
       if (phone.x - @x).abs < 50 and (phone.y - @y).abs < 50
         @phones += 1
+        self.level_phone_count += 1
         @beep.play
         true
       end

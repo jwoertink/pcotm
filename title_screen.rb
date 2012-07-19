@@ -8,6 +8,7 @@ class TitleScreen
     @selector = OptionSelector.new(window, 160, 280, 3)
     @title_song = Gosu::Song.new(window, File.join(File.dirname(__FILE__), 'assets', 'title-screen.ogg'))
     @title_song.play(true)
+    @info_screen = InfoScreen.new(window)
   end
   
   def draw
@@ -35,7 +36,8 @@ class TitleScreen
         @title_song.stop
         @window.game_song.play(true)
       when 2
-        
+        @title_song.stop
+        @window.goto(@info_screen)
       when 3
         @window.close
       end

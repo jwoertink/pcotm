@@ -1,7 +1,8 @@
 class Map
   attr_reader :width, :height, :phones
   
-  def initialize(window, filename)
+  def initialize(window, level)
+    filename = "assets/level_#{level}.txt"
     # Load 60x60 tiles, 5px overlap in all four directions.
     @tileset = Gosu::Image.load_tiles(window, File.join(File.dirname(__FILE__), 'assets', 'land-tiles.png'), 60, 60, true)
 
@@ -26,6 +27,7 @@ class Map
         end
       end
     end
+    @total = @phones.length
   end
   
   def draw
@@ -47,5 +49,9 @@ class Map
   # Solid at a given pixel position?
   def solid?(x, y)
     y < 0 || @tiles[x / 50][y / 50]
+  end
+  
+  def total_phones
+    @total
   end
 end
