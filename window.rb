@@ -29,11 +29,7 @@ class Window < Gosu::Window
       if @monster.level_phone_count >= @map.total_phones
         # Add callback for finding all the phones
         # draw loading screen
-        self.current_level += 1
-        @map = Map.new(self, current_level)
-        @monster.level_phone_count = 0
-        @time.reset!
-        
+        load_new_level
       end
       @camera_x = [[@monster.x - 320, 0].max, @map.width * 50 - 640].min
       @camera_y = [[@monster.y - 240, 0].max, @map.height * 50 - 480].min
@@ -56,7 +52,7 @@ class Window < Gosu::Window
                   score_width, 0, 0xaa000000,
                   0, @score_font.height, 0xaa000000,
                   score_width, @score_font.height, 0xaa000000
-        @score_font.draw(score_text, 0, 0, 3, 1.0, 1.0, 0xff6F0000)
+        @score_font.draw(score_text, 0, 0, 3, 1.0, 1.0, 0xffffffff)
         @timer.print(300, 0)
       end
     else
@@ -79,6 +75,24 @@ class Window < Gosu::Window
   
   def goto(screen)
     self.current_screen = screen
+  end
+  
+  def load_new_level
+    self.game_in_progress = false
+    self.current_level += 1
+    @map = Map.new(self, current_level)
+    @timer.reset!
+    self.current_screen = ScoreScreen.new(self, @timer)
+    self.game_song.stop
+    @monster.level_phone_count = 0
+    @camera_x = @camera_y = 0
+    @monster.x = 100
+    @monster.y = 50
+  end
+  
+  def start_new_level
+    self.game_in_progress = true
+    self.game_song.play(true)
   end
   
 end

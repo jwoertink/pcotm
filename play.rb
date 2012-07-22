@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'phone')
 require File.join(File.dirname(__FILE__), 'option_selector')
 require File.join(File.dirname(__FILE__), 'title_screen')
 require File.join(File.dirname(__FILE__), 'info_screen')
+require File.join(File.dirname(__FILE__), 'score_screen')
 
 
 window = Window.new

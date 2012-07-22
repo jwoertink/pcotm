@@ -1,6 +1,6 @@
 class Monster
-  attr_reader :x, :y, :phones
-  attr_accessor :level_phone_count
+  attr_reader :phones
+  attr_accessor :level_phone_count, :x, :y
   
   def initialize(window, x, y)
     @x, @y = x, y
