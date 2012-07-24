@@ -1,21 +1,21 @@
 class Window < Gosu::Window
-  attr_reader :map, :game_song
-  attr_accessor :game_in_progress, :current_screen, :current_level
+  attr_reader :game_song
+  attr_accessor :map, :game_in_progress, :current_screen, :current_level
   
   def initialize
     super 640, 480, false
     self.caption = "Phone Case of the Monster"
     self.current_level = 1
     self.current_screen = TitleScreen.new(self)
+    self.map = Map.new(self, current_level)
     @timer = Timer.new(self)
-    @sky = Gosu::Image.new(self, File.join(File.dirname(__FILE__), 'assets', 'background.png'), true)
-    @map = Map.new(self, current_level)
+    @sky = Gosu::Image.new(self, asset_path('background.png'), true)
     @monster = Monster.new(self, 400, 100)
     @camera_x = @camera_y = 0
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
     @game_in_progress = false
     
-    @game_song = Gosu::Song.new(self, File.join(File.dirname(__FILE__), 'assets', 'game-song.ogg'))
+    @game_song = Gosu::Song.new(self, asset_path('game-song.ogg'))
   end
   
   def update
@@ -25,14 +25,14 @@ class Window < Gosu::Window
       move_x -= 5 if button_down? Gosu::KbLeft
       move_x += 5 if button_down? Gosu::KbRight
       @monster.update(move_x)
-      @monster.collect_phones(@map.phones)
-      if @monster.level_phone_count >= @map.total_phones
+      @monster.collect_phones(map.phones)
+      if @monster.level_phone_count >= map.total_phones
         # Add callback for finding all the phones
         # draw loading screen
         load_new_level
       end
-      @camera_x = [[@monster.x - 320, 0].max, @map.width * 50 - 640].min
-      @camera_y = [[@monster.y - 240, 0].max, @map.height * 50 - 480].min
+      @camera_x = [[@monster.x - 320, 0].max, map.width * 50 - 640].min
+      @camera_y = [[@monster.y - 240, 0].max, map.height * 50 - 480].min
     else
       current_screen.update
     end
@@ -42,7 +42,7 @@ class Window < Gosu::Window
     if @game_in_progress
       @sky.draw(0, 0, 0)
       translate -@camera_x, -@camera_y do
-        @map.draw
+        map.draw
         @monster.draw
       end
       translate 10, 10 do
@@ -80,7 +80,8 @@ class Window < Gosu::Window
   def load_new_level
     self.game_in_progress = false
     self.current_level += 1
-    @map = Map.new(self, current_level)
+    self.map = Map.new(self, current_level)
+    @monster.map = map
     @timer.reset!
     self.current_screen = ScoreScreen.new(self, @timer)
     self.game_song.stop

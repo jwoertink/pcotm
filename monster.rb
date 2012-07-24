@@ -1,17 +1,17 @@
 class Monster
   attr_reader :phones
-  attr_accessor :level_phone_count, :x, :y
+  attr_accessor :level_phone_count, :x, :y, :map
   
-  def initialize(window, x, y)
+  def initialize(window, x, y, color = 'blue')
     @x, @y = x, y
     @dir = :left
     @vy = 0
     @map = window.map
-    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, File.join(File.dirname(__FILE__), 'assets', 'monster.png'), 50, 50, false)
+    @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles(window, asset_path("monster_#{color}.png"), 50, 50, false)
     @cur_image = @standing
     @phones = 0
     self.level_phone_count = 0
-    @beep = Gosu::Sample.new(window, File.join(File.dirname(__FILE__), 'assets', 'beep.wav'))
+    @beep = Gosu::Sample.new(window, asset_path('beep.wav'))
   end
   
   def draw
