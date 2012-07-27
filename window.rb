@@ -1,6 +1,6 @@
 class Window < Gosu::Window
   attr_reader :game_song
-  attr_accessor :map, :game_in_progress, :current_screen, :current_level
+  attr_accessor :map, :game_in_progress, :current_screen, :current_level, :monster
   
   def initialize
     super 640, 480, false
@@ -10,7 +10,6 @@ class Window < Gosu::Window
     self.map = Map.new(self, current_level)
     @timer = Timer.new(self)
     @sky = Gosu::Image.new(self, asset_path('background.png'), true)
-    @monster = Monster.new(self, 400, 100)
     @camera_x = @camera_y = 0
     @score_font = Gosu::Font.new(self, Gosu.default_font_name, 26)
     @game_in_progress = false

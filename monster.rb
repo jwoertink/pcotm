@@ -2,7 +2,7 @@ class Monster
   attr_reader :phones
   attr_accessor :level_phone_count, :x, :y, :map
   
-  def initialize(window, x, y, color = 'blue')
+  def initialize(window, x, y, color = :blue)
     @x, @y = x, y
     @dir = :left
     @vy = 0

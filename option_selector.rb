@@ -1,12 +1,12 @@
 class OptionSelector
   attr_reader :x, :y, :value, :options
   
-  def initialize(window, x, y, options = 1)
+  def initialize(window, x, y, options = {})
     @value = 1
-    @options = options
+    @options = options[:value] || 1
     @x, @y = x, y
     @arrow = Gosu::Font.new(window, Gosu.default_font_name, 32)
-    @arrow_text = ">"
+    @arrow_text = options[:arrow] || ">"
     @arrow_color = Gosu::Color::BLACK
     @arrow.draw(@arrow_text, @x, @y, 3, 1.0, 1.0, @arrow_color)
   end
@@ -27,6 +27,21 @@ class OptionSelector
   def move_down
     if @value < @options
       @y += 40
+      @value += 1
+    end
+  end
+  
+  
+  def move_left
+    unless @value.eql? 1
+      @x -= 213
+      @value -= 1
+    end
+  end
+  
+  def move_right
+    if @value < @options
+      @x += 213
       @value += 1
     end
   end

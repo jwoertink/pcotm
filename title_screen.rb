@@ -5,10 +5,9 @@ class TitleScreen
     @window = window
     @background = Gosu::Image.new(window, asset_path('title-screen.png'), true)
     set_text!
-    @selector = OptionSelector.new(window, 160, 280, 3)
+    @selector = OptionSelector.new(window, 160, 280, :value => 3)
     @title_song = Gosu::Song.new(window, asset_path('title-screen.ogg'))
     @title_song.play(true)
-    @info_screen = InfoScreen.new(window)
   end
   
   def draw
@@ -32,11 +31,12 @@ class TitleScreen
     when Gosu::KbReturn
       case @selector.value
       when 1
-        @window.game_in_progress = true
         @title_song.stop
-        @window.game_song.play(true)
+        @monster_select_screen = MonsterSelectScreen.new(@window)
+        @window.goto(@monster_select_screen)
       when 2
         @title_song.stop
+        @info_screen = InfoScreen.new(@window)
         @window.goto(@info_screen)
       when 3
         @window.close
