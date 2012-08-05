@@ -26,7 +26,7 @@ class Monster
   end
   
   def would_fit?(offs_x, offs_y)
-    not @map.solid?(@x + offs_x, @y + offs_y) and not @map.solid?(@x + offs_x, @y + offs_y - 45)
+    !@map.solid?(@x + offs_x, @y + offs_y) && !@map.solid?(@x + offs_x, @y + offs_y - 45)
   end
   
   def update(move_x)
@@ -41,11 +41,11 @@ class Monster
     
     if move_x > 0
       @dir = :right
-      move_x.times { @x += 1 if would_fit?(1, 0) }
+      move_x.times { @x += 1 if would_fit?(20, 0) }
     end
     if move_x < 0
       @dir = :left
-      (-move_x).times { @x -= 1 if would_fit?(-1, 0) }
+      (-move_x).times { @x -= 1 if would_fit?(-20, 0) }
     end
     
     @vy += 1

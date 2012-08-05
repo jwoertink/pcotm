@@ -1,6 +1,5 @@
 class Timer
-  attr_reader :hours, :minutes, :seconds
-  attr_accessor :stopped_time
+  attr_accessor :stopped_time, :hours, :minutes, :seconds
 
   def initialize(window)
     @hours = 0

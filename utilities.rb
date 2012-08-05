@@ -14,4 +14,8 @@ module Utilities
     File.join(ROOT_PATH, 'assets', folder, filename)
   end
   
+  def lib_path(filename)
+    File.join(ROOT_PATH, filename)
+  end
+  
 end

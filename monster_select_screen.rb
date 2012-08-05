@@ -3,12 +3,13 @@ class MonsterSelectScreen
   
   def initialize(window)
     @window = window
+    @background = Gosu::Image.new(window, asset_path('monster-select-bg.jpg'), true)
     @monsters = []
     @colors = [:blue, :green, :yellow]
     x = ((window.width / @colors.length) - 50) / 2.0
-    @selector = OptionSelector.new(window, x, 240, :value => @colors.length, :arrow => '^')
+    @selector = OptionSelector.new(window, x - 20, 270, :value => @colors.length, :arrow => "down")
     @colors.each do |color|
-      @monsters << Monster.new(window, x, (window.height / 2), color)
+      @monsters << Monster.new(window, x, 400, color)
       x += (window.width / @colors.length)
     end
     @select_song = Gosu::Song.new(window, asset_path('select-screen.ogg'))
@@ -16,12 +17,7 @@ class MonsterSelectScreen
   end
   
   def draw_background
-    @window.draw_quad(
-      0, 0, Gosu::Color::WHITE,
-      @window.width, 0, Gosu::Color::WHITE,
-      0, @window.height, Gosu::Color::WHITE,
-      @window.width, @window.height, Gosu::Color::WHITE
-    )
+    @background.draw(0, 0, 0)
   end
   
   def draw

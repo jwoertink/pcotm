@@ -5,7 +5,7 @@ class TitleScreen
     @window = window
     @background = Gosu::Image.new(window, asset_path('title-screen.png'), true)
     set_text!
-    @selector = OptionSelector.new(window, 160, 280, :value => 3)
+    @selector = OptionSelector.new(window, 130, 280, :value => 3)
     @title_song = Gosu::Song.new(window, asset_path('title-screen.ogg'))
     @title_song.play(true)
   end
@@ -13,9 +13,9 @@ class TitleScreen
   def draw
     @background.draw(0, 0, 0)
     @selector.draw
-    @start_option.draw("Start Game", 180, 280, 5, 1.0, 1.0, Gosu::Color::BLACK)
-    @about_option.draw("About PCOTM", 180, 320, 5, 1.0, 1.0, Gosu::Color::BLACK)
-    @quit_option.draw("Quit Game", 180, 360, 5, 1.0, 1.0, Gosu::Color::BLACK)
+    @start_option.draw("LET'S DO THIS!", 210, 280, 5, 1.0, 1.0, Gosu::Color::WHITE)
+    @about_option.draw("ABOUT #PCOTM", 210, 330, 5, 1.0, 1.0, Gosu::Color::WHITE)
+    @quit_option.draw("I'M DONE", 210, 380, 5, 1.0, 1.0, Gosu::Color::WHITE)
   end
   
   def update

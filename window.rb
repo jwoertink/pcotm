@@ -1,12 +1,13 @@
 class Window < Gosu::Window
   attr_reader :game_song
-  attr_accessor :map, :game_in_progress, :current_screen, :current_level, :monster
+  attr_accessor :map, :game_in_progress, :current_screen, :current_level, :monster, :timer, :cursor_active
   
   def initialize
     super 640, 480, false
     self.caption = "Phone Case of the Monster"
-    self.current_level = 1
+    self.current_level = 3
     self.current_screen = TitleScreen.new(self)
+    self.cursor_active = false
     self.map = Map.new(self, current_level)
     @timer = Timer.new(self)
     @sky = Gosu::Image.new(self, asset_path('background.png'), true)
@@ -26,9 +27,11 @@ class Window < Gosu::Window
       @monster.update(move_x)
       @monster.collect_phones(map.phones)
       if @monster.level_phone_count >= map.total_phones
-        # Add callback for finding all the phones
-        # draw loading screen
-        load_new_level
+        if current_level == 3
+          load_end_game
+        else
+          load_new_level
+        end
       end
       @camera_x = [[@monster.x - 320, 0].max, map.width * 50 - 640].min
       @camera_y = [[@monster.y - 240, 0].max, map.height * 50 - 480].min
@@ -45,7 +48,7 @@ class Window < Gosu::Window
         @monster.draw
       end
       translate 10, 10 do
-        score_text = "Phones Collected: #{@monster.phones}"
+        score_text = "Phones Collected: #{@monster.phones} / #{map.total_phones}"
         score_width = @score_font.text_width(score_text)
         draw_quad 0, 0, 0xaa000000,
                   score_width, 0, 0xaa000000,
@@ -93,6 +96,18 @@ class Window < Gosu::Window
   def start_new_level
     self.game_in_progress = true
     self.game_song.play(true)
+    self.timer = Timer.new(self)
+  end
+  
+  def load_end_game
+    self.game_in_progress = false
+    self.current_screen = EndGameScreen.new(self)
+    self.game_song.stop
+    current_screen.end_song.play(true)
+  end
+  
+  def needs_cursor?
+    @cursor_active
   end
   
 end

@@ -5,20 +5,19 @@ class OptionSelector
     @value = 1
     @options = options[:value] || 1
     @x, @y = x, y
-    @arrow = Gosu::Font.new(window, Gosu.default_font_name, 32)
-    @arrow_text = options[:arrow] || ">"
-    @arrow_color = Gosu::Color::BLACK
-    @arrow.draw(@arrow_text, @x, @y, 3, 1.0, 1.0, @arrow_color)
+    direction = options[:arrow] || "right"
+    @arrow = Gosu::Image.new(window, asset_path("arrow-#{direction}.png"), true)
+    @arrow.draw(@x, @y, 3)
   end
   
   def draw
-    @arrow.draw(@arrow_text, @x, @y, 3, 1.0, 1.0, @arrow_color)
+    @arrow.draw(@x, @y, 3)
   end
   
   # Move up to the next option unless the value is 0
   def move_up
     unless @value.eql? 1
-      @y -= 40
+      @y -= 50
       @value -= 1
     end
   end
@@ -26,7 +25,7 @@ class OptionSelector
   # Move down to the next option unless the value is the last possible option
   def move_down
     if @value < @options
-      @y += 40
+      @y += 50
       @value += 1
     end
   end
