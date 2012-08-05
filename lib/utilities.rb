@@ -1,6 +1,6 @@
 module Utilities
   
-  ROOT_PATH = File.dirname(__FILE__)
+  ROOT_PATH = File.join(File.dirname(__FILE__), '..')
   
   def asset_path(filename)
     folder = case filename.split('.').last
@@ -15,7 +15,7 @@ module Utilities
   end
   
   def lib_path(filename)
-    File.join(ROOT_PATH, filename)
+    File.join(ROOT_PATH, 'lib', filename)
   end
   
 end

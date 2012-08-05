@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'gosu'
-require File.join(File.dirname(__FILE__), 'utilities')
+require_relative 'utilities'
 include Utilities
 
 require lib_path('timer')
