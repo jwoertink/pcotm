@@ -30,7 +30,7 @@ class Timer
   end
   
   def formatted
-    "#{@hours}:#{@minutes}:#{@seconds}"
+    "#{@hours}".rjust(2, '0') + ":" + "#{@minutes}".rjust(2, '0') + ":" + "#{@seconds}".rjust(2, '0')
   end
   
   def reset!

@@ -91,7 +91,7 @@ class Window < Gosu::Window
     @camera_x = @camera_y = 0
     @monster.x = 100
     @monster.y = 50
-    @phones_to_collect = @map.total_phones + @monster.level_phone_count
+    @phones_to_collect = @map.total_phones + @monster.phones
   end
   
   def start_new_level
