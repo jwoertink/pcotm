@@ -7,7 +7,7 @@ class Timer
     @seconds = 0
     @last_time = Gosu.milliseconds
     @font = Gosu::Font.new(window, Gosu.default_font_name, 26)
-    self.stopped_time = ""
+    @stopped_time = ""
   end
 
   def update
@@ -25,7 +25,7 @@ class Timer
     end
   end
   
-  def print(x, y)
+  def draw(x, y)
     @font.draw("Elapsed Time: #{formatted}",x, y, 3, 1.0, 1.0, 0xff6F0000)
   end
   
@@ -34,7 +34,7 @@ class Timer
   end
   
   def reset!
-    self.stopped_time = formatted
+    @stopped_time = formatted
     @hours = @minutes = @seconds = 0
     @last_time = Gosu.milliseconds
   end

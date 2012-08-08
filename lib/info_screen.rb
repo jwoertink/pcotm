@@ -29,14 +29,7 @@ class InfoScreen
   end
   
   def keys(id)
-    case id
-    when Gosu::KbUp
-      
-    when Gosu::KbDown
-      
-    when Gosu::KbReturn
-      @window.goto(TitleScreen.new(@window))
-    end
+    @window.goto(TitleScreen.new(@window))
   end
   
 end
