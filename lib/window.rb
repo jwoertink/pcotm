@@ -4,7 +4,7 @@ class Window < Gosu::Window
   
   def initialize
     super 640, 480, false
-    @caption = "Phone Case of the Monster"
+    self.caption = "Phone Case of the Monster"
     @current_level = 1
     @current_screen = TitleScreen.new(self)
     @cursor_active = false

@@ -5,7 +5,7 @@ class EndGameScreen
     @window = window
     @window.cursor_active = true
     @text = Gosu::Font.new(window, Gosu.default_font_name, 30)
-    @code = "X2D5A3Q" #Generate unique code
+    @code = "X2D5A3Q" #Generate unique code. This doesn't work yet. 
     @end_song = Gosu::Song.new(window, asset_path('end-game.ogg'))
     tweet_text = "I%20just%20played%20and%20beat%20%23PCOTM%20http%3A%2F%2Fbit.ly%2FMbZUMo%20%40PhoneCaseOfTheM"
     @tweet_url = "https://twitter.com/intent/tweet?#{tweet_text}"
