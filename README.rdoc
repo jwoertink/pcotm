@@ -22,12 +22,17 @@ For using Rubinius
 
 == Playing
 	
-	pcotm$ ruby lib/play.rb
+	pcotm$ ruby play.rb
 	
 == Packaging
 This will create a .exe for windows, and .dmg for mac
 
   pcotm$ rake package
+
+== Issues
+* Sometimes the game won't exit when you hit `esc`. Just go to the terminal, and control+c to quit.
+* Some timer issues
+* When you beat the game, the tweet url doesn't pre-populate the tweet box
 
 == Copyright
 This project provided by Jeremy Woertink in association with PhoneCaseOfTheMonth.com
